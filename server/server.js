@@ -10,7 +10,7 @@ server.use(cors())
 server.get('/api/v1/photo', async (req, res) => {
   try{
     // const response = await fs.readFile('./public/gundam.jpg')
-  const response = await fs.readFile(path.join(__dirname,'public',gundam.jpg))
+  const response = await fs.readFile(path.join(__dirname,'public','gundam.jpg'))
 
   res.setHeader('Content-Type', 'image/*')
   res.send(response)
@@ -22,7 +22,7 @@ server.get('/api/v1/photo', async (req, res) => {
 server.get('/api/v1/about_me',async(req,res) => {
   try{
 // const response = await fs.readFile('./data/data.json')
-const response = await fs.readFile(__dirname,'data','data.json',{ encoding: 'utf8' })
+const response = await fs.readFile(path.join(__dirname,'data','data.json'))
 
 res.setHeader('Content-Type','application/json')
 res.send(JSON.parse(response))
