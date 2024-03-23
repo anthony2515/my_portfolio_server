@@ -8,18 +8,28 @@ server.use(express.json())
 server.use(cors())
 
 server.get('/api/v1/photo', async (req, res) => {
-  // const response = await fs.readFile('./public/gundam.jpg')
+  try{
+    // const response = await fs.readFile('./public/gundam.jpg')
   const response = await fs.readFile(path.join(__dirname,'public',gundam.jpg))
 
   res.setHeader('Content-Type', 'image/*')
   res.send(response)
+  }catch(e){
+    console.log("error fetching image",e)
+  }
+  
 })
 server.get('/api/v1/about_me',async(req,res) => {
-  // const response = await fs.readFile('./data/data.json')
-  const response = await fs.readFile(__dirname,'data','data.json',{ encoding: 'utf8' })
+  try{
+// const response = await fs.readFile('./data/data.json')
+const response = await fs.readFile(__dirname,'data','data.json',{ encoding: 'utf8' })
 
-  res.setHeader('Content-Type','application/json')
-  res.send(JSON.parse(response))
+res.setHeader('Content-Type','application/json')
+res.send(JSON.parse(response))
+  }catch(e){
+    console.log("error fetching data",e)
+  }
+  
 })
 const PORT = 3000
 server.listen(PORT, () => {
