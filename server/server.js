@@ -16,7 +16,7 @@ server.get('/api/v1/photo', async (req, res) => {
 })
 server.get('/api/v1/about_me',async(req,res) => {
   // const response = await fs.readFile('./data/data.json')
-  const response = await fs.readFile(__dirname,'data','data.json','utf8')
+  const response = await fs.readFile(__dirname,'data','data.json',{ encoding: 'utf8' })
 
   res.setHeader('Content-Type','application/json')
   res.send(JSON.parse(response))
