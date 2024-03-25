@@ -6,7 +6,7 @@ const server = express()
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use(cors())
-server.use('/videos', express.static(path.join(__dirname,'public','videos')));
+server.use('/images', express.static(path.join(__dirname,'public','project_images')));
 
 server.get('/api/v1/photo', async (req, res) => {
   try{

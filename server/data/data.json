@@ -2,21 +2,21 @@
   "about_me":"Hello everyone, My name is Anthony, I am a passionate programmer focusing on full-stack web development. I love learning new things, especially studying new codebases and related frameworks. I also love working on Test Driven    Development tasks to meet all the expected outputs from each stack(from back-end to front-end).",
   "role":"Web Developer",
   "projects":[{
-    "video":"Ton's Grocery - Google Chrome 2024-01-07 00-58-19.mp4",
+    "image":"tons grocery image.PNG",
     "project_name":"Ton's Grocery",
     "description":"- It's a personal project that is inspired by cloning Mighty Ape. However, I’m still working on it as it has so many features to work on. Most importantly, I met my MVP(minimum viable product) to get this started.- The MVP for this project is to add an admin page (no authentication yet) and the admin can add products, upload an image of the product, and post it on the home route - I used CSS, HTML, Javascript, React.js and sqlite3",
     "tech_used":["nodejs","c++"],
     "github_url":"url1"
   },
   {
-    "video":"Hungry Games - Google Chrome 2024-01-07 01-25-37.mp4",
+    "image":"hungry games image.PNG",
     "project_name":"Hungry Games",
     "description":"- This is one of our group projects that I worked on and this is made for users who are confused about choosing a restaurant. The main goal of this project is to give them one random restaurant to go to.- My contribution to this project is to consume an API from Google Maps API to get the specific coordinates of the location that users typed and also made a delete functionality for users to delete some locations that they don't want on the list- We used CSS, HTML, Javascript, React.js and sqlite3",
     "tech_used":["nodejs2","c++2"],
     "github_url":"url12"
   },
   {
-    "video":"Template • Collection - Google Chrome 2024-01-07 01-05-03.mp4",
+    "image":"kanban board image.PNG",
     "project_name":"KanBan Board",
     "description":"- a simple personal project that replicates a Kanban Board where the user can add a backlog and move tasks to the next stages until it's done- I used CSS, HTML, Javascript, React.js and sqlite3",
     "tech_used":["nodejs3","c++3"],
