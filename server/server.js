@@ -13,7 +13,7 @@ server.get('/api/v1/photo', async (req, res) => {
     const response = await fs.readFile(path.join(__dirname,'public','display_photo.jpg'))
 
     res.setHeader('Content-Type', 'image/*')
-    res.setHeader('Access-Control-Allow-Origin','*')
+    
     res.send(response)
   }catch(e){
     console.log("error fetching image",e)
@@ -26,7 +26,7 @@ server.get('/api/v1/about_me',async(req,res) => {
     const response = await fs.readFile(path.join(__dirname,'data','data.json'))
 
     res.setHeader('Content-Type','application/json')
-    res.setHeader('Access-Control-Allow-Origin','*')
+   
     res.send(JSON.parse(response))
   }catch(e){
     console.log("error fetching JSON data",e)
