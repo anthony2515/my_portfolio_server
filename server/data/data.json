@@ -82,5 +82,19 @@
     ]
     
   }
-]
+  ],
+  "education":[
+    {
+      "school_image":"dev_academy.png",
+      "school_year":"Aug 2023 - Dec 2023",
+      "qualification":"Certificate in Applied Software Development",
+      "description": "It's a 17-week web development boot camp that imitates a real-life development team. This course taught us a modern tech stack with a strong focus on human skills, collaboration, and working in a team using agile methodology. We were trained to work in pairs daily with an opportunity to give valuable feedback to each other and work on a larger group of 4-5 members before the weekends"
+    },
+    {
+      "school_image":"tip.png",
+      "school_year":"Jun 2012 - Apr 2016",
+      "qualification":"Bachelor of Science in Information Technology",
+      "description":" Studied 4 years of Database Administration using Oracle SQL, MSSQL, MYSQL. \n Project Management \n System Analysis and Design \n Familiarity with C++, C, Java \n Data Structures \n Flowcharts, ERD(Entity Relationship Diagrams),DFD(Data Flow Diagrams)"
+    }
+  ]
 }
