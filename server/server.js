@@ -11,7 +11,7 @@ server.use('/images', express.static(path.join(__dirname,'public','project_image
 
 server.get('/api/v1/photo', async (req, res) => {
   try{
-    const response = await fs.readFile(path.join(__dirname,'public','display_photo.jpg'))
+    const response = await fs.readFile(path.join(__dirname,'tmp','display_photo.jpg'))
 
     res.setHeader('Content-Type', 'image/*')
     
@@ -35,7 +35,7 @@ server.get('/api/v1/about_me',async(req,res) => {
 })
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname,'public')) // Sets the destination for uploaded files
+    cb(null, path.join(__dirname,'tmp')) // Sets the destination for uploaded files
 
   },
   filename: function (req, file, cb) {
