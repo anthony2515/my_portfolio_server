@@ -35,7 +35,8 @@ server.get('/api/v1/about_me',async(req,res) => {
 })
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname,'public')) // Sets the destination for uploaded files
+    // cb(null, path.join(__dirname,'public')) // Sets the destination for uploaded files
+    cb(null, path.join('/tmp','public')) 
   },
   filename: function (req, file, cb) {
     // Sets the file name. This example uses the original file name, but it can be customized
