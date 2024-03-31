@@ -1,5 +1,6 @@
 const express = require('express')
 const fs = require('node:fs/promises')
+const multer = require('multer')
 const path = require('path')
 const cors = require('cors')
 const server = express()
@@ -32,7 +33,19 @@ server.get('/api/v1/about_me',async(req,res) => {
     console.log("error fetching JSON data",e)
   }
 })
-
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname,'public')) // Sets the destination for uploaded files
+  },
+  filename: function (req, file, cb) {
+    // Sets the file name. This example uses the original file name, but it can be customized
+    cb(null, 'display_photo.jpg')
+  }
+});
+const upload = multer({ storage: storage });
+server.post('/api/v1/file',upload.single('litrato'), async(req,res) => {
+  console.log(req.file)
+})
 const PORT = 3000
 server.listen(PORT, () => {
   console.log(`Server is listening on Port ${PORT}`)
