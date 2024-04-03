@@ -102,13 +102,22 @@ server.post('/api/v1/addProject',uploadProjectImage.single('image'),async(req,re
     tech_used,
     github_url
   }
- console.log(obj)
- 
   const readData = await fs.readFile(path.join(__dirname,'data','data.json'))
   const parseReadData = JSON.parse(readData)
   parseReadData.projects.unshift(obj)
   const result = JSON.stringify(parseReadData,null,2)
   await fs.writeFile(path.join(__dirname,'data','data.json'),result)
+  res.send("project added successfully")
+})
+server.delete('/api/v1/deleteProject',async(req,res) =>{
+  const {index,image} = req.body
+  const readData = await fs.readFile(path.join(__dirname,'data','data.json'))
+  const parseReadData = JSON.parse(readData)
+  parseReadData.projects.splice(index,1)
+  const result = JSON.stringify(parseReadData,null,2)
+  await fs.writeFile(path.join(__dirname,'data','data.json'),result)
+  await fs.unlink(path.join(__dirname,'public','project_images',image))
+  res.send("Project Deleted")
 })
 const PORT = 3000
 server.listen(PORT, () => {
