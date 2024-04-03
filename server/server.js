@@ -87,6 +87,29 @@ server.post('/api/v1/projectImage',uploadProjectImage.single('project_image'),as
     //work on data.json projects[index].image get that
   }
 )
+server.post('/api/v1/data',async(req,res) => {
+  const result = JSON.stringify(req.body,null,2)
+  await fs.writeFile(path.join(__dirname,'data','data.json'),result)
+})
+server.post('/api/v1/addProject',uploadProjectImage.single('image'),async(req,res)=>{
+  const image = req.file.originalname
+  const {project_name,description,github_url}=req.body
+  const tech_used = req.body.tech_used.split(",")
+  const obj = {
+    image,
+    project_name,
+    description,
+    tech_used,
+    github_url
+  }
+ console.log(obj)
+ 
+  const readData = await fs.readFile(path.join(__dirname,'data','data.json'))
+  const parseReadData = JSON.parse(readData)
+  parseReadData.projects.unshift(obj)
+  const result = JSON.stringify(parseReadData,null,2)
+  await fs.writeFile(path.join(__dirname,'data','data.json'),result)
+})
 const PORT = 3000
 server.listen(PORT, () => {
   console.log(`Server is listening on Port ${PORT}`)
