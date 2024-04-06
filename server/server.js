@@ -22,7 +22,7 @@ server.get('/api/v1/photo', async (req, res) => {
     console.log('error fetching image', e)
   }
 })
-server.get('/api/v1/impormasyon', async (req, res) => {
+server.get('/api/v1/data', async (req, res) => {
   try {
     const response = await fs.readFile(
       path.join(__dirname, 'data', 'data.json')
