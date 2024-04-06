@@ -11,7 +11,7 @@
         "React",
         "Sqlite3"
       ],
-      "github_url": "url"
+      "github_url": "https://github.com/anthony2515/mightyape-clone"
     },
     {
       "image": "hungry games image.PNG",
@@ -23,7 +23,7 @@
         "React.js",
         "Javascript"
       ],
-      "github_url": "url12"
+      "github_url": "https://github.com/anthony2515/Hungry-Games"
     },
     {
       "image": "kanban board image.PNG",
@@ -35,7 +35,7 @@
         "Javascript",
         "Sqlite3"
       ],
-      "github_url": "url13"
+      "github_url": "https://github.com/anthony2515/kanban-board"
     }
   ],
   "skills": [
