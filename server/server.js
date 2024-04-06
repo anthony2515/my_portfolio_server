@@ -7,10 +7,7 @@ const server = express()
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use(cors())
-server.use(
-  '/images',
-  express.static(path.join(__dirname, 'public', 'project_images'))
-)
+server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))
 
 server.get('/api/v1/photo', async (req, res) => {
   try {
@@ -25,7 +22,7 @@ server.get('/api/v1/photo', async (req, res) => {
     console.log('error fetching image', e)
   }
 })
-server.get('/api/v1/about_me', async (req, res) => {
+server.get('/api/v1/data', async (req, res) => {
   try {
     const response = await fs.readFile(
       path.join(__dirname, 'data', 'data.json')
@@ -38,6 +35,9 @@ server.get('/api/v1/about_me', async (req, res) => {
     console.log('error fetching JSON data', e)
   }
 })
+
+
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, 'public')) // Sets the destination for uploaded files
