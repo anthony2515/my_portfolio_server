@@ -9,7 +9,7 @@ server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 
 const corsOptions = {
-  origin: 'https://my-portfolio-oneasdf-xi-33.vercel.app/' 
+  origin: 'https://my-portfolio-one-xi-33.vercel.app/' 
 }
 
 server.use(cors(corsOptions))
