@@ -4,11 +4,11 @@ const multer = require('multer')
 const path = require('path')
 const cors = require('cors')
 const server = express()
+require('dotenv').config()
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use(cors())
 server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))
-
 server.get('/api/v1/photo', async (req, res) => {
   try {
     const response = await fs.readFile(
@@ -94,9 +94,38 @@ server.post(
   }
 )
 server.post('/api/v1/data', async (req, res) => {
-  const result = JSON.stringify(req.body, null, 2)
-  await fs.writeFile(path.join(__dirname, 'data', 'data.json'), result)
+  
+  
+  if(req.body.password == process.env.X_API_KEY){
+    delete req.body.password
+    const result = JSON.stringify(req.body, null, 2)
+    
+    await fs.writeFile(path.join(__dirname, 'data', 'data.json'), result)
+  
+    res.json({ message: "Data added successfully" })
+  }else{
+    res.status(401).json({error:"missing api key"})
+  }
+  
+  
 })
+server.post('/api/proxy/data', async (req, res) => {
+  const apiUrl = 'http://localhost:3000/api/v1/data'; // The final API URL
+  try {
+    const apiResponse = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(req.body), // Forward the client request body to the API
+    });
+    const data = await apiResponse.json();
+    res.json(data); // Send the API response back to the client
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'An error occurred while processing your request.' });
+  }
+});
 server.post(
   '/api/v1/addProject',
   uploadProjectImage.single('image'),
