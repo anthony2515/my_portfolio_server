@@ -7,8 +7,15 @@ const server = express()
 require('dotenv').config()
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
-server.use(cors())
+
+const corsOptions = {
+  origin: 'https://my-portfolio-one-xi-33.vercel.app/', // Replace with your Vercel domain
+};
+
+server.use(cors(corsOptions))
 server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))
+
+
 server.get('/api/v1/photo', async (req, res) => {
   try {
     const response = await fs.readFile(
@@ -22,6 +29,8 @@ server.get('/api/v1/photo', async (req, res) => {
     console.log('error fetching image', e)
   }
 })
+
+
 server.get('/api/v1/data', async (req, res) => {
   try {
     const response = await fs.readFile(
@@ -66,6 +75,8 @@ const ProjectImageStorage = multer.diskStorage({
   },
 })
 const uploadProjectImage = multer({ storage: ProjectImageStorage })
+
+
 server.post(
   '/api/v1/projectImage',
   uploadProjectImage.single('project_image'),
@@ -93,8 +104,9 @@ server.post(
     //work on data.json projects[index].image get that
   }
 )
+
+
 server.post('/api/v1/data', async (req, res) => {
-  
   
   if(req.body.password == process.env.X_API_KEY){
     delete req.body.password
@@ -104,11 +116,13 @@ server.post('/api/v1/data', async (req, res) => {
   
     res.json({ message: "Data added successfully" })
   }else{
-    res.status(401).json({error:"missing api key"})
+    res.status(401).json({error:"missing api key/incorrect key"})
   }
   
   
 })
+
+
 server.post('/api/proxy/data', async (req, res) => {
   const apiUrl = 'http://localhost:3000/api/v1/data'; // The final API URL
   try {
@@ -126,6 +140,8 @@ server.post('/api/proxy/data', async (req, res) => {
     res.status(500).json({ error: 'An error occurred while processing your request.' });
   }
 });
+
+
 server.post(
   '/api/v1/addProject',
   uploadProjectImage.single('image'),
@@ -150,6 +166,8 @@ server.post(
     res.send('project added successfully')
   }
 )
+
+
 server.delete('/api/v1/deleteProject', async (req, res) => {
   const { index, image } = req.body
   const readData = await fs.readFile(path.join(__dirname, 'data', 'data.json'))
@@ -169,6 +187,8 @@ server.post('/api/v1/techSkill', async (req, res) => {
   await fs.writeFile(path.join(__dirname, 'data', 'data.json'), result)
   res.send('Tech Skill has been added')
 })
+
+
 server.delete('/api/v1/techSkill', async (req, res) => {
   const { index } = req.body
   const readData = await fs.readFile(path.join(__dirname, 'data', 'data.json'))
@@ -177,6 +197,8 @@ server.delete('/api/v1/techSkill', async (req, res) => {
   const result = JSON.stringify(parseReadData, null, 2)
   await fs.writeFile(path.join(__dirname, 'data', 'data.json'), result)
 })
+
+
 server.post('/api/v1/softSkill', async (req, res) => {
   const { soft_skills } = req.body
   const readData = await fs.readFile(path.join(__dirname, 'data', 'data.json'))
@@ -189,6 +211,8 @@ server.post('/api/v1/softSkill', async (req, res) => {
   await fs.writeFile(path.join(__dirname,'data','data.json'),result)
   res.send("Soft skill added successfully")
 })
+
+
 server.delete('/api/v1/softSkill',async(req,res) =>{
   const { index } = req.body
   const readData = await fs.readFile(path.join(__dirname, 'data', 'data.json'))
@@ -197,6 +221,8 @@ server.delete('/api/v1/softSkill',async(req,res) =>{
   const result = JSON.stringify(parseReadData, null, 2)
   await fs.writeFile(path.join(__dirname, 'data', 'data.json'), result)
 })
+
+
 server.post('/api/v1/tools',async(req,res) => {
   const readData = await fs.readFile(path.join(__dirname,'data','data.json'))
   const parseReadData = JSON.parse(readData)
@@ -205,6 +231,8 @@ server.post('/api/v1/tools',async(req,res) => {
   await fs.writeFile(path.join(__dirname,'data','data.json'),result)
   res.send("Tools added successfully")
 })
+
+
 server.delete('/api/v1/tools',async(req,res) => {
   const {index} = req.body
   const readData = await fs.readFile(path.join(__dirname,'data','data.json'))
@@ -214,6 +242,8 @@ server.delete('/api/v1/tools',async(req,res) => {
   await fs.writeFile(path.join(__dirname,'data','data.json'),result)
 
 })
+
+
 const PORT = 3000
 server.listen(PORT, () => {
   console.log(`Server is listening on Port ${PORT}`)
