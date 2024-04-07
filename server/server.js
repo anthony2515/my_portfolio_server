@@ -9,7 +9,15 @@ server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 
 const corsOptions = {
-  origin: 'https://my-portfolio-oneasdf-xi-33.vercel.app/', // Replace with your Vercel domain
+  // origin: 'https://my-portfolio-oneasdf-xi-33.vercel.app/', // Replace with your Vercel domain
+  origin: (origin, callback) => {
+    console.log(origin); // This will log the origin of the request
+    if (origin === 'https://my-portfolioasdf-one-xi-33.vercel.app') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
 };
 
 server.use(cors(corsOptions))
