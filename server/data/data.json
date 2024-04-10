@@ -1,7 +1,16 @@
 {
   "about_me": "Hello everyone, My name is Anthony, I am a passionate programmer focusing on full-stack web development. I love learning new things, especially studying new codebases and related frameworks. I also love working on Test Driven    Development tasks to meet all the expected outputs from each stack(from back-end to front-end).",
-  "role": "Web Developer",
+  "role": "webpack Developer",
   "projects": [
+    {
+      "image": "Fanta Soft Drink Cans - 330ml (24 Pack).jpg",
+      "project_name": "s",
+      "description": "d",
+      "tech_used": [
+        "f"
+      ],
+      "github_url": "f"
+    },
     {
       "image": "tons grocery image.PNG",
       "project_name": "Ton's Grocery",
@@ -23,7 +32,7 @@
         "React.js",
         "Javascript"
       ],
-      "github_url": "https://github.com/anthony2515/Hungry-Games"
+      "github_url": "https://github.com/anthony2515/Hungry-Game"
     },
     {
       "image": "kanban board image.PNG",
