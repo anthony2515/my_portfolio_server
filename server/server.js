@@ -41,13 +41,11 @@ server.post('/api/proxy',upload.single("file"), async (req, res) => {
     `http://localhost:3000${TOOLS_ROUTE}`,
 
   ]; // The final API URL
-  console.log(req.body)
   switch (req.body.api_route) {
 
     case "change display photo": {
       const { file } = req;
       const form = new FormData();
-      console.log("from the proxy server", file);
       
       if (file) {
         form.append('file', file.buffer, file.originalname);
@@ -75,8 +73,7 @@ server.post('/api/proxy',upload.single("file"), async (req, res) => {
       const { file } = req;
 
       const form = new FormData();
-      console.log("from the proxy server", file);
-      console.log("proxy body",req.body)
+    
       
       if (file) {
         form.append('file', file.buffer, file.originalname);
@@ -104,8 +101,7 @@ server.post('/api/proxy',upload.single("file"), async (req, res) => {
       const {file} = req
       const {project_name,description,tech_used,github_url} = req.body
       const form = new FormData();
-      console.log("from the proxy server", file);
-      console.log("proxy body",req.body)
+     
       
       if (file) {
         form.append('image', file.buffer, file.originalname);
@@ -205,7 +201,7 @@ server.delete('/api/proxy',async(req,res) => {
     `http://localhost:3000${SOFT_SKILL_ROUTE}`,
     `http://localhost:3000${TOOLS_ROUTE}`,
   ]
-  console.log("proxy delete",req.body.api_route)
+ 
   switch(req.body.api_route){
   case "delete project" : {
     try{
@@ -318,7 +314,6 @@ server.get('/api/v1/data', async (req, res) => {
 
 const checkPasswordMiddleWare = (req, res, next) => {
   const password = req.headers['x-api-key']; 
-  console.log("from passwor middleware",process.env.X_API_KEY)
   if (password === process.env.X_API_KEY) {
     next();
   } else {
@@ -339,8 +334,6 @@ const uploadDisplayPhoto = multer({ storage: storage })
 server.post(DISPLAY_PHOTO_ROUTE,
             checkPasswordMiddleWare,
             uploadDisplayPhoto.single('file'),async (req, res) => {
-                console.log("body",req.body)
-                console.log("file",req.file)
               res.json({message:"display photo has been saved"})
             }
 )
@@ -362,8 +355,7 @@ const uploadProjectImage = multer({ storage: ProjectImageStorage })
 server.post(PROJECT_IMAGE_ROUTE,checkPasswordMiddleWare,uploadProjectImage.single('file'),async (req, res) => {
  try {
     const newProjectImage = req.file.originalname
-    console.log('file objects', req.file)
-    console.log('file body', req.body)
+    
     const { imageToReplace, index } = req.body
     fs.unlink(
       path.join(__dirname, 'public', 'project_images', imageToReplace),
@@ -380,7 +372,7 @@ server.post(PROJECT_IMAGE_ROUTE,checkPasswordMiddleWare,uploadProjectImage.singl
     const jsonData = JSON.parse(data)
     jsonData.projects[index].image = newProjectImage
     const updateJson = JSON.stringify(jsonData)
-    // console.log('imageStorage', ProjectImageStorage.getFilename)
+    
     await fs.writeFile(path.join(__dirname, 'data', 'data.json'), updateJson)
     //work on data.json projects[index].image get that
     res.json({ message: "Project image has been replaced"})
@@ -410,7 +402,6 @@ server.post('/api/v1/data', async (req, res) => {
 })
 
 
-
 server.post(
   ADD_PROJECT_ROUTE,checkPasswordMiddleWare,
   uploadProjectImage.single('image'),
@@ -425,7 +416,7 @@ server.post(
       tech_used,
       github_url,
     }
-    console.log(req.body)
+  
     
     const readData = await fs.readFile(
       path.join(__dirname, 'data', 'data.json')
@@ -441,7 +432,7 @@ server.post(
 
 server.delete(DELETE_PROJECT_ROUTE,checkPasswordMiddleWare, async (req, res) => {
   const { index, image } = req.body
-  console.log("the actual delete route",req.body)
+ 
   const readData = await fs.readFile(path.join(__dirname, 'data', 'data.json'))
   const parseReadData = JSON.parse(readData)
   parseReadData.projects.splice(index, 1)
@@ -463,7 +454,7 @@ server.post(TECH_SKILL_ROUTE,checkPasswordMiddleWare, async (req, res) => {
 
 server.delete(TECH_SKILL_ROUTE,checkPasswordMiddleWare, async (req, res) => {
   const { index } = req.body
-console.log("tech delet soft",index)
+
   const readData = await fs.readFile(path.join(__dirname, 'data', 'data.json'))
   const parseReadData = JSON.parse(readData)
   parseReadData.skills[0].technical_skills.splice(index, 1)
