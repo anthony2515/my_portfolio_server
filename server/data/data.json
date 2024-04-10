@@ -3,15 +3,6 @@
   "role": "webpack Developer",
   "projects": [
     {
-      "image": "Fanta Soft Drink Cans - 330ml (24 Pack).jpg",
-      "project_name": "s",
-      "description": "d",
-      "tech_used": [
-        "f"
-      ],
-      "github_url": "f"
-    },
-    {
       "image": "tons grocery image.PNG",
       "project_name": "Ton's Grocery",
       "description": "- It's a personal project that is inspired by cloning Mighty Ape. However, I’m still working on it as it has so many features to work on. Most importantly, I met my MVP(minimum viable product) to get this started.- The MVP for this project is to add an admin page (no authentication yet) and the admin can add products, upload an image of the product, and post it on the home route - I used CSS, HTML, Javascript, React.js and sqlite3",
