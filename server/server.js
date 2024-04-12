@@ -13,7 +13,7 @@ const corsOptions = {
 server.use(cors(corsOptions));
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
-
+server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))
 
 
 // let fetch;
@@ -28,7 +28,7 @@ server.use(express.json())
 // const SOFT_SKILL_ROUTE = process.env.SOFT_SKILL_ROUTE
 // const TOOLS_ROUTE = process.env.TOOLS_ROUTE
 
-// server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))
+
 
 // const upload = multer({ storage: multer.memoryStorage() });
 // server.post('/api/proxy',upload.single("file"), async (req, res) => {
