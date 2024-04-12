@@ -2,18 +2,18 @@ const express = require('express')
 const fs = require('node:fs/promises')
 const multer = require('multer')
 const path = require('path')
-const cors = require('cors')
+// const cors = require('cors')
 const server = express()
 const FormData = require('form-data')
 
 require('dotenv').config()
-const corsOptions = {
-  origin: 'https://my-portfolio-one-xi-33.vercel.app', // Make sure this matches exactly with the client's origin.
-  methods: ['GET', 'POST', 'DELETE'], // Adjust according to your needs
-  allowedHeaders: ['Content-Type', 'X-API-KEY'],
-  credentials: true
-}
-server.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: 'https://my-portfolio-one-xi-33.vercel.app', // Make sure this matches exactly with the client's origin.
+//   methods: ['GET', 'POST', 'DELETE'], // Adjust according to your needs
+//   allowedHeaders: ['Content-Type', 'X-API-KEY'],
+//   credentials: true
+// }
+// server.use(cors(corsOptions));
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))
