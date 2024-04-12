@@ -13,7 +13,7 @@ server.use(express.json())
 // const corsOptions = {
 //   origin: 'https://my-portfolio-one-xi-33.vercel.app',
 // }
-// server.use(cors(corsOptions))
+server.use(cors())
 let fetch;
 (async () => {
   fetch = (await import('node-fetch')).default;
