@@ -35,7 +35,15 @@ const TECH_SKILL_ROUTE = process.env.TECH_SKILL_ROUTE
 const SOFT_SKILL_ROUTE = process.env.SOFT_SKILL_ROUTE
 const TOOLS_ROUTE = process.env.TOOLS_ROUTE
 
-
+console.log('Routes configuration:', {
+  DISPLAY_PHOTO_ROUTE,
+  PROJECT_IMAGE_ROUTE,
+  ADD_PROJECT_ROUTE,
+  DELETE_PROJECT_ROUTE,
+  TECH_SKILL_ROUTE,
+  SOFT_SKILL_ROUTE,
+  TOOLS_ROUTE
+});
 
 const upload = multer({ storage: multer.memoryStorage() });
 server.post('/api/proxy',upload.single("file"), async (req, res) => {
