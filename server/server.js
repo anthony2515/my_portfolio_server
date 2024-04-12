@@ -15,11 +15,12 @@ server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))
 
-
 let fetch;
 (async () => {
   fetch = (await import('node-fetch')).default;
 })()
+
+
 const DISPLAY_PHOTO_ROUTE = process.env.DISPLAY_PHOTO_ROUTE
 const PROJECT_IMAGE_ROUTE = process.env.PROJECT_IMAGE_ROUTE
 const ADD_PROJECT_ROUTE = process.env.ADD_PROJECT_ROUTE
@@ -28,15 +29,6 @@ const TECH_SKILL_ROUTE = process.env.TECH_SKILL_ROUTE
 const SOFT_SKILL_ROUTE = process.env.SOFT_SKILL_ROUTE
 const TOOLS_ROUTE = process.env.TOOLS_ROUTE
 
-console.log('Routes configuration:', {
-  DISPLAY_PHOTO_ROUTE,
-  PROJECT_IMAGE_ROUTE,
-  ADD_PROJECT_ROUTE,
-  DELETE_PROJECT_ROUTE,
-  TECH_SKILL_ROUTE,
-  SOFT_SKILL_ROUTE,
-  TOOLS_ROUTE
-});
 
 const upload = multer({ storage: multer.memoryStorage() });
 server.post('/api/proxy',upload.single("file"), async (req, res) => {
