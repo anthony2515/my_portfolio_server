@@ -10,13 +10,10 @@ require('dotenv').config()
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 
-const corsOptions = {
-  origin: 'https://my-portfolio-one-xi-33.vercel.app',
-    optionsSuccessStatus: 200, // For legacy browser support
-    methods: "GET", // Methods allowed for CORS
-    allowedHeaders: "Content-Type, Authorization"
-}
-server.use(cors(corsOptions))
+// const corsOptions = {
+//   origin: 'https://my-portfolio-one-xi-33.vercel.app',
+// }
+// server.use(cors(corsOptions))
 let fetch;
 (async () => {
   fetch = (await import('node-fetch')).default;
