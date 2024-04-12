@@ -9,7 +9,7 @@ const FormData = require('form-data')
 require('dotenv').config()
 const corsOptions = {
   origin: (origin, callback) => {
-    console.log(origin); // This will log the origin of the request
+    console.log(origin); // This will log the origin of the request 
     if (origin === 'https://my-portfolio-one-xi-33.vercel.app') {
       callback(null, true);
     } else {
