@@ -13,7 +13,7 @@ server.use(express.json())
 const corsOptions = {
   origin: 'https://my-portfolio-one-xi-33.vercel.app' 
 }
-
+server.use(cors(corsOptions))
 let fetch;
 (async () => {
   fetch = (await import('node-fetch')).default;
@@ -25,7 +25,7 @@ const DELETE_PROJECT_ROUTE = process.env.DELETE_PROJECT_ROUTE
 const TECH_SKILL_ROUTE = process.env.TECH_SKILL_ROUTE
 const SOFT_SKILL_ROUTE = process.env.SOFT_SKILL_ROUTE
 const TOOLS_ROUTE = process.env.TOOLS_ROUTE
-server.use(cors(corsOptions))
+
 server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))
 
 const upload = multer({ storage: multer.memoryStorage() });
