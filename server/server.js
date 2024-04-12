@@ -17,7 +17,7 @@ const corsOptions = {
   // credentials: true // If your requests involve credentials
 };
 server.use(cors(corsOptions));
-server.use(cors());
+
 let fetch;
 (async () => {
   fetch = (await import('node-fetch')).default;
