@@ -8,14 +8,7 @@ const FormData = require('form-data')
 
 require('dotenv').config()
 const corsOptions = {
-  origin: (origin, callback) => {
-    console.log(origin); // This will log the origin of the request 
-    if (origin === 'https://my-portfolio-one-xi-33.vercel.app') {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin:'https://my-portfolio-one-xi-33.vercel.app'
 }
 server.use(cors(corsOptions));
 server.use(express.urlencoded({ extended: true }))
