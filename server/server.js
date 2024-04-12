@@ -8,7 +8,10 @@ const FormData = require('form-data')
 
 require('dotenv').config()
 const corsOptions = {
-  origin: 'https://my-portfolio-one-xi-33.vercel.app'
+  origin: 'https://my-portfolio-one-xi-33.vercel.app', // Make sure this matches exactly with the client's origin.
+  methods: ['GET', 'POST', 'DELETE', 'PUT'], // Adjust according to your needs
+  allowedHeaders: ['Content-Type', 'X-API-KEY'],
+  credentials: true
 }
 server.use(cors(corsOptions));
 server.use(express.urlencoded({ extended: true }))
