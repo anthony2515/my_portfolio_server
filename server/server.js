@@ -42,7 +42,7 @@ server.post('/api/proxy',upload.single("file"), async (req, res) => {
     `http://localhost:3000${SOFT_SKILL_ROUTE}`,
     `http://localhost:3000${TOOLS_ROUTE}`,
 
-  ]; // The final API URL
+  ]; // The final API URL 
   switch (req.body.api_route) {
 
     case "change display photo": {
