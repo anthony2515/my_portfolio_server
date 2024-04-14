@@ -42,7 +42,7 @@ server.post('/api/proxy',upload.single("file"), async (req, res) => {
     `http://localhost:3000${SOFT_SKILL_ROUTE}`,
     `http://localhost:3000${TOOLS_ROUTE}`,
 
-  ]; // The final API URL 
+  ];
   switch (req.body.api_route) {
     case "save inputs":{
       
@@ -210,8 +210,6 @@ server.post('/api/proxy',upload.single("file"), async (req, res) => {
       }
       break;
     }
-    
-    // Add more cases as needed for other api_route values
     default:
       // Handle unknown api_route values
       res.status(400).json({ error: 'Invalid api_route provided.' });
@@ -312,9 +310,7 @@ server.get('/api/v1/photo', async (req, res) => {
     const response = await fs.readFile(
       path.join(__dirname, 'public', 'display_photo.jpg')
     )
-
     res.setHeader('Content-Type', 'image/*')
-
     res.send(response)
   } catch (e) {
     console.log('error fetching image', e)
@@ -327,9 +323,7 @@ server.get('/api/v1/data', async (req, res) => {
     const response = await fs.readFile(
       path.join(__dirname, 'data', 'data.json')
     )
-
     res.setHeader('Content-Type', 'application/json')
-
     res.send(JSON.parse(response))
   } catch (e) {
     console.log('error fetching JSON data', e)
@@ -355,6 +349,7 @@ const storage = multer.diskStorage({
   },
 })
 const uploadDisplayPhoto = multer({ storage: storage })
+
 server.post(DISPLAY_PHOTO_ROUTE,
             checkPasswordMiddleWare,
             uploadDisplayPhoto.single('file'),async (req, res) => {
@@ -398,9 +393,9 @@ server.post(PROJECT_IMAGE_ROUTE,checkPasswordMiddleWare,uploadProjectImage.singl
     const updateJson = JSON.stringify(jsonData)
     
     await fs.writeFile(path.join(__dirname, 'data', 'data.json'), updateJson)
-    //work on data.json projects[index].image get that
+    
     res.json({ message: "Project image has been replaced"})
-      // All your logic here, including file operations and JSON manipulation.
+     
   } catch (error) {
       console.error('Error:', error);
       res.status(500).json({ error: 'Internal Server Error.' });
