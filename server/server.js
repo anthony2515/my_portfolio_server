@@ -339,6 +339,10 @@ const checkPasswordMiddleWare = (req, res, next) => {
   }
 };
 
+////////////////////////////
+//---ACTUAL ENDPOINTS---///
+//////////////////////////
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, 'public')) 
@@ -376,6 +380,7 @@ server.post(PROJECT_IMAGE_ROUTE,checkPasswordMiddleWare,uploadProjectImage.singl
     const newProjectImage = req.file.originalname
     
     const { imageToReplace, index } = req.body
+    //delete previous image or imageToReplace
     fs.unlink(
       path.join(__dirname, 'public', 'project_images', imageToReplace),
       (err, data) => {
@@ -386,7 +391,7 @@ server.post(PROJECT_IMAGE_ROUTE,checkPasswordMiddleWare,uploadProjectImage.singl
         }
       }
     )
-
+    //add the new image detail to data.json
     const data = await fs.readFile(path.join(__dirname, 'data', 'data.json'))
     const jsonData = JSON.parse(data)
     jsonData.projects[index].image = newProjectImage
