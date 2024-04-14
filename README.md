@@ -12,6 +12,8 @@ I hosted this server using vercel and made a vercel.json file to configure the s
 }
 ```
 
+and I set the source to all endpoints to this "/(.*)"
+
 # File Structure
 -All the files that we need to make these server are stored in the server directory
 

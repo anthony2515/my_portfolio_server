@@ -10,7 +10,7 @@ require('dotenv').config()
 const corsOptions = {
   origin:'https://my-portfolio-one-xi-33.vercel.app'
 }
-server.use(cors(corsOptions));
+server.use(cors());
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))
@@ -28,13 +28,13 @@ const DELETE_PROJECT_ROUTE = process.env.DELETE_PROJECT_ROUTE
 const TECH_SKILL_ROUTE = process.env.TECH_SKILL_ROUTE
 const SOFT_SKILL_ROUTE = process.env.SOFT_SKILL_ROUTE
 const TOOLS_ROUTE = process.env.TOOLS_ROUTE
-
+const INPUTS_ROUTE = process.env.INPUTS_ROUTE
 
 const upload = multer({ storage: multer.memoryStorage() });
 server.post('/api/proxy',upload.single("file"), async (req, res) => {
   const apiUrl = 
   [
-    'http://localhost:3000/api/v1/data',
+    `http://localhost:3000${INPUTS_ROUTE}`,
     `http://localhost:3000${DISPLAY_PHOTO_ROUTE}`,
     `http://localhost:3000${PROJECT_IMAGE_ROUTE}`,
     `http://localhost:3000${ADD_PROJECT_ROUTE}`,
@@ -44,7 +44,28 @@ server.post('/api/proxy',upload.single("file"), async (req, res) => {
 
   ]; // The final API URL 
   switch (req.body.api_route) {
-
+    case "save inputs":{
+      
+      console.log(req.body)
+      try{
+        const response = await fetch(apiUrl[0],
+        {
+          method:'POST',
+          headers:{
+            "X-API-KEY":req.headers["x-api-key"],
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify(req.body)
+          
+        })
+        const data = await response.json()
+        res.json(data)
+      }catch(e){
+        console.error("Error",e)
+        res.status(500).json({error: "Internal Server Error"})
+      }
+      break;
+    }
     case "change display photo": {
       const { file } = req;
       const form = new FormData();
@@ -189,6 +210,7 @@ server.post('/api/proxy',upload.single("file"), async (req, res) => {
       }
       break;
     }
+    
     // Add more cases as needed for other api_route values
     default:
       // Handle unknown api_route values
@@ -387,15 +409,16 @@ server.post(PROJECT_IMAGE_ROUTE,checkPasswordMiddleWare,uploadProjectImage.singl
 )
 
 
-server.post('/api/v1/data', async (req, res) => {
+server.post(INPUTS_ROUTE, async (req, res) => {
   
   if(req.headers['x-api-key'] == process.env.X_API_KEY){
     delete req.body.password
+    delete req.body.api_route
     const result = JSON.stringify(req.body, null, 2)
     
     await fs.writeFile(path.join(__dirname, 'data', 'data.json'), result)
   
-    res.json({ message: "Data added successfully" })
+    res.json({ message: "Inputs added successfully" })
   }else{
     res.status(401).json({error:"missing api key/incorrect key"})
   }
