@@ -10,7 +10,7 @@ require('dotenv').config()
 const corsOptions = {
   origin:'https://my-portfolio-one-xi-33.vercel.app'
 }
-server.use(cors());
+server.use(cors(corsOptions));
 server.use(express.urlencoded({ extended: true }))
 server.use(express.json())
 server.use('/images',express.static(path.join(__dirname, 'public', 'project_images')))

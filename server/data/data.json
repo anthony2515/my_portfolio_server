@@ -3,6 +3,41 @@
   "role": "Web Developer",
   "projects": [
     {
+      "image": "my_portfolio_manager.PNG",
+      "project_name": "My Portfolio Manager",
+      "description": "This is the ui where I add, edit or delete some stuff on my portfolio. I know the ui is very simple as Im the only one whos going to use it but you are welcome to go to this repository on github by clicking the link below this slide and check my documentation showing how this ui works to update stuffs on my portfolio. Thank you everyone!",
+      "tech_used": [
+        "HTML",
+        "CSS",
+        "Reactjs"
+      ],
+      "github_url": "https://github.com/anthony2515/my_portfolio_manager"
+    },
+    {
+      "image": "my_portfolio_server.PNG",
+      "project_name": "My Porftolio (server side)",
+      "description": "This is where my portfolio website gets all the data and images behind the scenes. I also used this server when I'm developing the ui of my portfolio manager where I can Add, Edit or Delete some stuff in my portfolio for example adding a new Project or editing the details about me. ",
+      "tech_used": [
+        "Nodejs",
+        "Express library",
+        "Multer library"
+      ],
+      "github_url": "https://github.com/anthony2515/my_portfolio_server"
+    },
+    {
+      "image": "my_portfolio.PNG",
+      "project_name": "My Portfolio Website",
+      "description": "A very simple looking portfolio but behind the scene it gets all the data and the images from the server. I did it this way just because when I learned another technology or adding a project to my website, I dont need to add stuffs by code instead, I'm just gonna pull up a ui to add stuffs to my portfolio",
+      "tech_used": [
+        "Reactjs",
+        "Blisk.io",
+        "HTML",
+        "CSS",
+        "Figma"
+      ],
+      "github_url": "https://github.com/anthony2515/my_portfolio"
+    },
+    {
       "image": "tons grocery image.PNG",
       "project_name": "Ton's Grocery",
       "description": "- It's a personal project that is inspired by cloning Mighty Ape. However, I’m still working on it as it has so many features to work on. Most importantly, I met my MVP(minimum viable product) to get this started.- The MVP for this project is to add an admin page (no authentication yet) and the admin can add products, upload an image of the product, and post it on the home route - I used CSS, HTML, Javascript, React.js and sqlite3",
